@@ -15,4 +15,9 @@ public class Vector3f {
         this.y = 0;
         this.z = 0;
     }
+
+
+    public Vector3f negate() {
+        return new Vector3f(-x * 9/16,-y,-z);
+    }
 }

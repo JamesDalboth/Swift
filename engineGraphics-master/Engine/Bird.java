@@ -27,9 +27,10 @@ public class Bird extends Sprite {
     return position.y;
   }
 
-  public void setPosition(float newX, float newY) {
-    position = new Vector3f(newX, newY, 0);
+  public Vector3f getPos() {
+    return position;
   }
+
 
   public void setSpeed(float speed) {
     this.speed = speed;
@@ -40,7 +41,7 @@ public class Bird extends Sprite {
     tex.bind();
     shader.enable();
     shader.setUniformMat4f("ml_matrix", Matrix4f.translate(new Vector3f())
-        .multiply(Matrix4f.rotate(dir)));
+        .multiply(Matrix4f.rotate(dir - 90)));
     vertexArray.render();
     shader.disable();
     tex.unbind();
@@ -51,7 +52,10 @@ public class Bird extends Sprite {
   }
 
   public void move() {
-    position.x = position.x + (float) Math.cos(dir) * speed;
-    position.y = position.y + (float) Math.sin(dir) * speed;
+    position.x = position.x + (float) Math.cos(Math.toRadians(dir)) * speed / 1000;
+    position.y = position.y + (float) Math.sin(Math.toRadians(dir)) * speed / 1000;
+
+    //position.y -= 0.001;
+    System.out.println(position.x);
   }
 }

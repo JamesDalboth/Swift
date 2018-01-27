@@ -1,5 +1,6 @@
 package Engine.graphics;
 
+import Engine.maths.Vector3f;
 import Engine.utils.BufferUtils;
 
 import static Engine.graphics.Shader.TCOORD_ATTRIB;
@@ -69,4 +70,5 @@ public class VertexArray {
         bind();
         draw();
     }
+
 }

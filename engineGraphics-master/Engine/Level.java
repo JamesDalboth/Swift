@@ -6,20 +6,27 @@ import Engine.graphics.Texture;
 import Engine.graphics.VertexArray;
 
 public class Level {
+    private int mapsize = 100;
     private Sprite background;
     private MidiHandler mh;
     private Bird bird;
-    private float size = 0.1f;
+    private LightBug[] bugs = new LightBug[100];
+    private float birdSize = 0.1f;
+    private float bugSize = 0.05f;
 
     public Level(Sprite background) {
         this.background = background;
         mh = new MidiHandler();
         createBird();
+        createBug();
     }
 
     public void draw() {
         background.draw();
         bird.draw();
+        for (LightBug bug : bugs) {
+            bug.draw();
+        }
 }
 
     public void update() {
@@ -36,7 +43,6 @@ public class Level {
                 }
             }
         }
-        System.out.println(degree);
 
         bird.rotate(degree);
         if (moved) {
@@ -53,10 +59,10 @@ public class Level {
 
     public void createBird() {
         float[] vertices = new float[] {
-                -size, -size * 9.0f / 16.0f, -0.1f,
-                -size, size * 9.0f / 16.0f, -0.1f,
-                size,  size * 9.0f / 16.0f, -0.1f,
-                size, -size * 9.0f / 16.0f, -0.1f
+                -birdSize, -birdSize, -0.1f,
+                -birdSize, birdSize, -0.1f,
+                birdSize,  birdSize, -0.1f,
+                birdSize, -birdSize, -0.1f
         };
 
         byte[] indices = new byte[] {
@@ -78,5 +84,38 @@ public class Level {
         Texture tex = new Texture("engineGraphics-master/Engine/res/swift.png");
 
         bird = new Bird(shader,va,tex);
+    }
+
+    public void createBug() {
+        float[] vertices = new float[] {
+                -bugSize * 9.0f / 16.0f, -bugSize, -0.1f,
+                -bugSize * 9.0f / 16.0f, bugSize, -0.1f,
+                bugSize * 9.0f / 16.0f,  bugSize, -0.1f,
+                bugSize * 9.0f / 16.0f, -bugSize, -0.1f
+        };
+
+        byte[] indices = new byte[] {
+                0, 1, 2,
+                2, 3, 0
+        };
+
+        float[] tcs = new float[] {
+                0, 1,
+                0, 0,
+                1, 0,
+                1, 1
+        };
+
+        VertexArray va = new VertexArray(vertices,indices,tcs);
+
+        Shader shader = new Shader("engineGraphics-master/Engine/shaders/bird.vert","engineGraphics-master/Engine/shaders/bird.frag");
+
+        Texture tex = new Texture("engineGraphics-master/Engine/res/one_ball.png");
+
+        for (int i = 0; i < bugs.length; i++) {
+            LightBug bug;
+            bug = new LightBug(shader,va,tex,bird,i);
+            bugs[i] = bug;
+        }
     }
 }
