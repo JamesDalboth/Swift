@@ -6,13 +6,13 @@ import Engine.graphics.Texture;
 import Engine.graphics.VertexArray;
 
 public class Level {
-    private int mapsize = 50;
+    private int mapsize = 100;
     private Sprite background;
     private MidiHandler mh;
     private Bird bird;
-    private LightBug[] bugs = new LightBug[200];
+    private LightBug[] bugs = new LightBug[400];
     private float birdSize = 0.1f;
-    private float bugSize = 0.0125f;
+    private float bugSize = 0.02f;
 
     public Level(Sprite background) {
         this.background = background;
@@ -22,11 +22,13 @@ public class Level {
     }
 
     public void draw() {
-        background.draw();
+        background.draw( );
         bird.draw();
+        LightBug.bind();
         for (LightBug bug : bugs) {
-            bug.draw();
+            bug.render();
         }
+        LightBug.unbind();
 }
 
     public void update() {

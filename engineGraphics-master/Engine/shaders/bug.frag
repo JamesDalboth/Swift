@@ -7,8 +7,20 @@ in DATA
 	vec2 tc;
 } fs_in;
 
+const vec2 center = vec2(0.5,0.5);
 void main()
 {
-	float dist = 1.0f;
-	color = vec4(dist);
+	float dist = abs(distance(center,fs_in.tc));
+
+    if (dist < 0.4) {
+        color = vec4(255.0f/255.0f,255.0f/255.0f,200.f/255.0f,0.125f/dist);
+    } else {
+        color = vec4(0.0f);
+    }
+
+    if (dist < 0.5) {
+        color += vec4(255.0f/255.0f,255.0f/255.0f,200.f/255.0f,0.125f/dist);
+    } else {
+        color += vec4(0.0f);
+    }
 }

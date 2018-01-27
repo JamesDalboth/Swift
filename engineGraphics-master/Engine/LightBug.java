@@ -12,9 +12,9 @@ import java.util.Random;
 public class LightBug{
 
 
-    protected Shader shader;
-    protected VertexArray vertexArray;
-    protected Texture tex;
+    protected static Shader shader;
+    protected static VertexArray vertexArray;
+    protected static Texture tex;
 
     private static Bird bird;
     private Vector3f position = new Vector3f();
@@ -39,13 +39,25 @@ public class LightBug{
     }
 
     public void draw() {
+        bind();
+        unbind();
+        render();
+    }
+
+    public static void bind() {
         tex.bind();
         shader.enable();
+    }
+
+    public static void unbind() {
+        shader.disable();
+        tex.unbind();
+    }
+
+    public void render () {
         shader.setUniformMat4f("ml_matrix", Matrix4f.translate(bird.getPos().negate().add(position))
                 .multiply(Matrix4f.rotate(dir)));
         vertexArray.render();
-        shader.disable();
-        tex.unbind();
     }
 
 }

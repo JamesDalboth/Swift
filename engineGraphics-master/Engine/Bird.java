@@ -54,6 +54,5 @@ public class Bird extends Sprite {
   public void move() {
     position.x = position.x + (float) Math.cos(Math.toRadians(dir)) * speed / 2000;
     position.y = position.y + (float) Math.sin(Math.toRadians(dir)) * speed / 2000;
-
   }
 }
