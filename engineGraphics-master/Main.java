@@ -38,6 +38,13 @@ public class Main implements Runnable {
                 running = false;
             }
         }
+
+        glfwDestroyWindow(window);
+        glfwTerminate();
+
+        game.close();
+
+        System.exit(0);
     }
 
     public void init() {
@@ -64,7 +71,6 @@ public class Main implements Runnable {
         glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
         glEnable(GL_DEPTH_TEST);
         System.out.println("OpenGl: " + glGetString(GL_VERSION));
-
         game = new Game();
 
     }
