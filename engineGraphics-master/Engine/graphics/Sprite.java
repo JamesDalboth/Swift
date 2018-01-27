@@ -1,5 +1,7 @@
 package Engine.graphics;
 
+import Engine.maths.Matrix4f;
+
 public class Sprite {
 
     protected Shader shader;

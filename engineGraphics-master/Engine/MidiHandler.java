@@ -6,7 +6,7 @@ import java.util.List;
 import java.io.*;
 public class MidiHandler
 {
-    private boolean[] keys = new boolean[24];
+    public boolean[] keys = new boolean[24];
     private MidiDevice device;
     public MidiHandler()
     {
@@ -55,10 +55,12 @@ public class MidiHandler
             ShortMessage m = (ShortMessage) msg;
             int noteInd = m.getData1() - 48;
             System.out.println(noteInd);
-            if (m.getStatus() == ShortMessage.NOTE_ON) {
-                keys[noteInd] = true;
-            } else {
-                keys[noteInd] = false;
+            if (noteInd < 24 && noteInd >= 0) {
+                if (m.getStatus() == ShortMessage.NOTE_ON) {
+                    keys[noteInd] = true;
+                } else {
+                    keys[noteInd] = false;
+                }
             }
         }
         public void close() {}

@@ -5,6 +5,8 @@ import org.lwjgl.opengl.GL;
 
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL13.GL_TEXTURE1;
+import static org.lwjgl.opengl.GL13.glActiveTexture;
 import static org.lwjgl.system.MemoryUtil.NULL;
 
 public class Main implements Runnable {
@@ -71,6 +73,12 @@ public class Main implements Runnable {
         glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
         glEnable(GL_DEPTH_TEST);
         System.out.println("OpenGl: " + glGetString(GL_VERSION));
+
+        glEnable(GL_DEPTH_TEST);
+        glActiveTexture(GL_TEXTURE1);
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
         game = new Game();
 
     }
