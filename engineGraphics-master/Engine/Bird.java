@@ -9,6 +9,8 @@ public class Bird {
   private Vector3f position = new Vector3f();
   private VertexArray mesh;
   private Texture texture;
+  private float speed;
+  private Vector3f dir = new Vector3f();
 
   public Bird(float x, float y) {
     position.x = x;
@@ -28,6 +30,14 @@ public class Bird {
   }
 
   public void render() {
+
+  }
+
+  public void rotate(float degrees) {
+
+  }
+
+  public void move() {
 
   }
 }
