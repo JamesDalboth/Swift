@@ -2,6 +2,9 @@ package Engine.graphics;
 
 import Engine.maths.Matrix4f;
 
+import static org.lwjgl.opengl.GL13.GL_TEXTURE1;
+import static org.lwjgl.opengl.GL13.glActiveTexture;
+
 public class Sprite {
 
     protected Shader shader;
@@ -12,6 +15,8 @@ public class Sprite {
         this.shader = shader;
         this.vertexArray = vertexArray;
         this.tex = tex;
+
+        this.shader.setUniform1i("tex", 1);
     }
      public void draw() {
         tex.bind();

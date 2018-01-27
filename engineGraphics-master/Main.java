@@ -75,7 +75,6 @@ public class Main implements Runnable {
         System.out.println("OpenGl: " + glGetString(GL_VERSION));
 
         glEnable(GL_DEPTH_TEST);
-        glActiveTexture(GL_TEXTURE1);
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
