@@ -9,6 +9,7 @@ public class Level {
     private Sprite background;
     private MidiHandler mh;
     private Bird bird;
+    private float size = 0.1f;
 
     public Level(Sprite background) {
         this.background = background;
@@ -17,7 +18,7 @@ public class Level {
     }
 
     public void draw() {
-        //background.draw();
+        background.draw();
         bird.draw();
 }
 
@@ -29,12 +30,13 @@ public class Level {
             if (key) {
                 moved = true;
                 if (i < mh.keys.length/2) {
-                    degree += -1;
+                    degree += 1;
                 } else {
                     degree -= 1;
                 }
             }
         }
+        System.out.println(degree);
 
         bird.rotate(degree);
         if (moved) {
@@ -51,10 +53,10 @@ public class Level {
 
     public void createBird() {
         float[] vertices = new float[] {
-                -1.0f, -1.0f * 9.0f / 16.0f, 0.0f,
-                -1.0f,  1.0f * 9.0f / 16.0f, 0.0f,
-                1.0f,  1.0f * 9.0f / 16.0f, 0.0f,
-                1.0f, -1.0f * 9.0f / 16.0f, 0.0f
+                -size, -size * 9.0f / 16.0f, -0.1f,
+                -size, size * 9.0f / 16.0f, -0.1f,
+                size,  size * 9.0f / 16.0f, -0.1f,
+                size, -size * 9.0f / 16.0f, -0.1f
         };
 
         byte[] indices = new byte[] {
