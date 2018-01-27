@@ -1,20 +1,22 @@
 package Engine;
 
+import Engine.graphics.Shader;
+import Engine.graphics.Sprite;
 import Engine.graphics.Texture;
 import Engine.graphics.VertexArray;
 import Engine.maths.Vector3f;
+import sun.security.provider.certpath.Vertex;
 
-public class Bird {
+public class Bird extends Sprite {
 
   private Vector3f position = new Vector3f();
-  private VertexArray mesh;
-  private Texture texture;
   private float speed;
   private Vector3f dir = new Vector3f(1, 0, 0);
 
-  public Bird(float x, float y) {
-    position.x = x;
-    position.y = y;
+  public Bird(Shader shader, VertexArray vertexArray, Texture texture) {
+    super(shader, vertexArray, texture);
+    position.x = 0;
+    position.y = 0;
   }
 
   public float getX() {
@@ -38,7 +40,12 @@ public class Bird {
   }
 
   public void rotate(float degrees) {
+    float radians = (float) Math.toRadians(degrees);
+    float cos = (float) Math.cos(radians);
+    float sin = (float) Math.sin(radians);
 
+    position.x = position.x;
+    
   }
 
   public void move() {
