@@ -20,4 +20,8 @@ public class Vector3f {
     public Vector3f negate() {
         return new Vector3f(-x * 9/16,-y,-z);
     }
+
+    public Vector3f add(Vector3f other) {
+        return new Vector3f(other.x + x, other.y + y, other.z + z);
+    }
 }

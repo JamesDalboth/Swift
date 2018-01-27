@@ -6,13 +6,13 @@ import Engine.graphics.Texture;
 import Engine.graphics.VertexArray;
 
 public class Level {
-    private int mapsize = 100;
+    private int mapsize = 50;
     private Sprite background;
     private MidiHandler mh;
     private Bird bird;
-    private LightBug[] bugs = new LightBug[100];
+    private LightBug[] bugs = new LightBug[200];
     private float birdSize = 0.1f;
-    private float bugSize = 0.05f;
+    private float bugSize = 0.0125f;
 
     public Level(Sprite background) {
         this.background = background;
@@ -108,7 +108,7 @@ public class Level {
 
         VertexArray va = new VertexArray(vertices,indices,tcs);
 
-        Shader shader = new Shader("engineGraphics-master/Engine/shaders/bird.vert","engineGraphics-master/Engine/shaders/bird.frag");
+        Shader shader = new Shader("engineGraphics-master/Engine/shaders/bug.vert","engineGraphics-master/Engine/shaders/bug.frag");
 
         Texture tex = new Texture("engineGraphics-master/Engine/res/one_ball.png");
 
