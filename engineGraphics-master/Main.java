@@ -43,11 +43,16 @@ public class Main implements Runnable {
             // TODO
         }
 
-        glfwWindowHint(GLFW_RESIZABLE, GL_TRUE);
-        window = glfwCreateWindow(width, height, "Test", NULL, NULL);
+
 
         GLFWVidMode vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
-        glfwSetWindowPos(window, (vidmode.width() - width) / 2, (vidmode.height() - height) / 2);
+        width = vidmode.width();
+        height = vidmode.height();
+
+        glfwWindowHint(GLFW_RESIZABLE, GL_TRUE);
+        window = glfwCreateWindow(width, height, "Test", glfwGetPrimaryMonitor(), NULL);
+
+        glfwSetWindowPos(window, 0, 0);
 
         glfwSetKeyCallback(window, new Input());
 
