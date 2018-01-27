@@ -22,7 +22,7 @@ public class Level {
     }
 
     public void draw() {
-        background.draw( );
+        background.draw(bird.getPos());
         bird.draw();
         LightBug.bind();
         for (LightBug bug : bugs) {

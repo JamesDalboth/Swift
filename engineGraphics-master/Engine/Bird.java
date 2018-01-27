@@ -36,7 +36,6 @@ public class Bird extends Sprite {
     this.speed = speed;
   }
 
-  @Override
   public void draw() {
     tex.bind();
     shader.enable();
