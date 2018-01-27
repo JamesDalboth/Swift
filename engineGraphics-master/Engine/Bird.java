@@ -5,7 +5,6 @@ import Engine.graphics.Sprite;
 import Engine.graphics.Texture;
 import Engine.graphics.VertexArray;
 import Engine.maths.Vector3f;
-import sun.security.provider.certpath.Vertex;
 
 public class Bird extends Sprite {
 
@@ -44,8 +43,11 @@ public class Bird extends Sprite {
     float cos = (float) Math.cos(radians);
     float sin = (float) Math.sin(radians);
 
-    position.x = position.x;
-    
+    float oldX = dir.x;
+    float oldY = dir.y;
+
+    dir.x = oldX * cos - oldY * sin;
+    dir.y = oldX * sin + oldY * cos;
   }
 
   public void move() {
