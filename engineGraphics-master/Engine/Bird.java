@@ -10,7 +10,7 @@ public class Bird {
   private VertexArray mesh;
   private Texture texture;
   private float speed;
-  private Vector3f dir = new Vector3f();
+  private Vector3f dir = new Vector3f(1, 0, 0);
 
   public Bird(float x, float y) {
     position.x = x;
@@ -29,6 +29,10 @@ public class Bird {
     position = new Vector3f(newX, newY, 0);
   }
 
+  public void setSpeed(float speed) {
+    this.speed = speed;
+  }
+
   public void render() {
 
   }
@@ -38,6 +42,7 @@ public class Bird {
   }
 
   public void move() {
-
+    position.x = position.x + dir.x * speed;
+    position.y = position.y + dir.y * speed;
   }
 }
