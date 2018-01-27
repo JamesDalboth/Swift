@@ -1,3 +1,4 @@
+import Engine.Game;
 import Engine.input.Input;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
@@ -8,14 +9,15 @@ import static org.lwjgl.system.MemoryUtil.NULL;
 
 public class Main implements Runnable {
 
-    private int width = 800;
-    private int height = 800;
+    private int width;
+    private int height;
 
     private Thread thread;
     private boolean running = false;
 
     private long window;
 
+    private Game game;
     public static void main(String[] args) {
         new Main().start();
     }
@@ -43,8 +45,6 @@ public class Main implements Runnable {
             // TODO
         }
 
-
-
         GLFWVidMode vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
         width = vidmode.width();
         height = vidmode.height();
@@ -64,17 +64,25 @@ public class Main implements Runnable {
         glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
         glEnable(GL_DEPTH_TEST);
         System.out.println("OpenGl: " + glGetString(GL_VERSION));
+
+        game = new Game();
+
     }
 
     public void update() {
         glfwPollEvents();
-        if (Input.keys[GLFW_KEY_SPACE]) {
-            System.out.println("FLAP");
+        if (Input.keys[GLFW_KEY_ESCAPE]) {
+            running = false;
         }
+
+        game.update();
     }
 
     public void render() {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+        game.render();
+
         glfwSwapBuffers(window);
     }
 

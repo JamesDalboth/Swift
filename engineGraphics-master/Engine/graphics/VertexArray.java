@@ -16,6 +16,12 @@ public class VertexArray {
     private int vao, vbo, ibo, tbo;
     private int count;
 
+
+    public VertexArray(int count) {
+        this.count = count;
+        vao = glGenVertexArrays();
+    }
+
     public VertexArray(float[] vertices, byte[] indices, float[] textureCoordinates) {
         count = indices.length;
 
