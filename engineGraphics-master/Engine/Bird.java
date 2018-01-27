@@ -4,13 +4,14 @@ import Engine.graphics.Shader;
 import Engine.graphics.Sprite;
 import Engine.graphics.Texture;
 import Engine.graphics.VertexArray;
+import Engine.maths.Matrix4f;
 import Engine.maths.Vector3f;
 
 public class Bird extends Sprite {
 
   private Vector3f position = new Vector3f();
   private float speed;
-  private Vector3f dir = new Vector3f(1, 0, 0);
+  private float dir = 0;
 
   public Bird(Shader shader, VertexArray vertexArray, Texture texture) {
     super(shader, vertexArray, texture);
@@ -34,24 +35,23 @@ public class Bird extends Sprite {
     this.speed = speed;
   }
 
-  public void render() {
-
+  @Override
+  public void draw() {
+    tex.bind();
+    shader.enable();
+    shader.setUniformMat4f("ml_matrix", Matrix4f.translate(new Vector3f())
+        .multiply(Matrix4f.rotate(dir)));
+    vertexArray.render();
+    shader.disable();
+    tex.unbind();
   }
 
   public void rotate(float degrees) {
-    float radians = (float) Math.toRadians(degrees);
-    float cos = (float) Math.cos(radians);
-    float sin = (float) Math.sin(radians);
-
-    float oldX = dir.x;
-    float oldY = dir.y;
-
-    dir.x = oldX * cos - oldY * sin;
-    dir.y = oldX * sin + oldY * cos;
+    dir += degrees;
   }
 
   public void move() {
-    position.x = position.x + dir.x * speed;
-    position.y = position.y + dir.y * speed;
+    position.x = position.x + (float) Math.cos(dir) * speed;
+    position.y = position.y + (float) Math.sin(dir) * speed;
   }
 }

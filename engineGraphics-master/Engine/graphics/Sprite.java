@@ -2,9 +2,9 @@ package Engine.graphics;
 
 public class Sprite {
 
-    private Shader shader;
-    private VertexArray vertexArray;
-    private Texture tex;
+    protected Shader shader;
+    protected VertexArray vertexArray;
+    protected Texture tex;
 
     public Sprite(Shader shader, VertexArray vertexArray, Texture tex) {
         this.shader = shader;
