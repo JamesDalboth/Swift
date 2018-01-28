@@ -38,9 +38,9 @@ public class LightBug{
         this.bird = bird;
     }
 
-    public void draw() {
+    public void draw(int time) {
         bind();
-        render();
+        render(time);
         unbind();
     }
 
@@ -54,7 +54,8 @@ public class LightBug{
         tex.unbind();
     }
 
-    public void render () {
+    public void render (int time) {
+        shader.setUniform1f("iTime", time);
         shader.setUniformMat4f("ml_matrix", Matrix4f.translate(bird.getPos().negate().add(position))
                 .multiply(Matrix4f.rotate(dir)));
         vertexArray.render();

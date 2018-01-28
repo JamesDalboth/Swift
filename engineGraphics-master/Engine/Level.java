@@ -30,11 +30,11 @@ public class Level {
     public void draw() {
         background.draw(bird.getPos(),timeElapsed);
         sun.draw();
-        bird.draw();
+        bird.draw(timeElapsed);
         LightBug.bind();
         for (LightBug bug : bugs) {
             if (bug != null) {
-                bug.render();
+                bug.render(timeElapsed);
             }
 
         }

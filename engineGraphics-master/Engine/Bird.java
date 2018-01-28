@@ -36,9 +36,10 @@ public class Bird extends Sprite {
     this.speed = speed;
   }
 
-  public void draw() {
+  public void draw(int time) {
     tex.bind();
     shader.enable();
+    shader.setUniform1f("iTime",time);
     shader.setUniformMat4f("ml_matrix", Matrix4f.translate(new Vector3f())
         .multiply(Matrix4f.rotate(dir - 90)));
     vertexArray.render();
