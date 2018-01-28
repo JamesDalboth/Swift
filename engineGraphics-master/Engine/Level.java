@@ -16,6 +16,8 @@ public class Level {
     private float birdSize = 0.1f;
     private float bugSize = 0.02f;
     private float sunSize = 0.3f;
+    private int timeElapsed = 0;
+    private int bwTime = 10000;
 
     public Level(Sprite background) {
         this.background = background;
@@ -26,7 +28,7 @@ public class Level {
     }
 
     public void draw() {
-        background.draw(bird.getPos());
+        background.draw(bird.getPos(),timeElapsed);
         sun.draw();
         bird.draw();
         LightBug.bind();
@@ -64,7 +66,7 @@ public class Level {
         bird.move();
 
         for (int i = 0; i < bugs.length; i++) {
-            Vector3f disp = new Vector3f();
+            Vector3f disp = new Vector3f(9999,999,999);
 
             if (bugs[i] != null) {
                 disp = bugs[i].position.add(bird.getPos().negate());
@@ -72,8 +74,19 @@ public class Level {
 
             if (disp.mag() < 0.1) {
                 bugs[i] = null;
+                timeElapsed -= 3000;
+                if (timeElapsed < 0) {
+                    timeElapsed = 0;
+                }
             }
         }
+
+        timeElapsed++;
+
+        if (timeElapsed > bwTime) {
+            timeElapsed = bwTime;
+        }
+        System.out.println(timeElapsed);
     }
 
     public void close() {

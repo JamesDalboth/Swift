@@ -6,7 +6,6 @@ in DATA
 	vec3 position;
 } fs_in;
 
-
 layout (location = 0) out vec4 color;
 const vec2 resolution = vec2(1920,1080);
 const vec2 sun = vec2(80,80);
@@ -22,4 +21,11 @@ void main()
 
     color += vec4( fragColor, 1.0);
 
+
+
+    vec3 bw = vec3((color.r + color.g + color.b) / 3.0f);
+
+    vec3 delta = (color.xyz - bw) * (fs_in.tc.x) / 10000.0f;
+
+    color = vec4(color.xyz - delta,1.0);
 }
