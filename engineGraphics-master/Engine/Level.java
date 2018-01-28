@@ -14,7 +14,7 @@ public class Level {
     private Sun sun;
     private float birdSize = 0.1f;
     private float bugSize = 0.02f;
-    private float sunSize = 0.1f;
+    private float sunSize = 0.3f;
 
     public Level(Sprite background) {
         this.background = background;
@@ -26,13 +26,14 @@ public class Level {
 
     public void draw() {
         background.draw(bird.getPos());
+        sun.draw();
         bird.draw();
         LightBug.bind();
         for (LightBug bug : bugs) {
             bug.render();
         }
         LightBug.unbind();
-        sun.draw();
+
 }
 
     public void update() {
@@ -94,10 +95,10 @@ public class Level {
 
     public void createBug() {
         float[] vertices = new float[] {
-                -bugSize * 9.0f / 16.0f, -bugSize, -0.1f,
-                -bugSize * 9.0f / 16.0f, bugSize, -0.1f,
-                bugSize * 9.0f / 16.0f,  bugSize, -0.1f,
-                bugSize * 9.0f / 16.0f, -bugSize, -0.1f
+                -bugSize * 9.0f / 16.0f, -bugSize, -0.2f,
+                -bugSize * 9.0f / 16.0f, bugSize, -0.2f,
+                bugSize * 9.0f / 16.0f,  bugSize, -0.2f,
+                bugSize * 9.0f / 16.0f, -bugSize, -0.2f
         };
 
         byte[] indices = new byte[] {
