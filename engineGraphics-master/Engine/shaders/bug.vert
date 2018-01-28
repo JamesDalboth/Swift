@@ -5,6 +5,7 @@ layout (location = 1) in vec2 tc;
 
 uniform mat4 ml_matrix;
 uniform float iTime;
+uniform float lTime;
 
 out DATA
 {
@@ -14,6 +15,10 @@ out DATA
 
 void main()
 {
+    float theta = lTime /100.0f;
+    float r = 0.1 * (sin(theta) * sin(theta));
+    float x = r * cos(theta);
+    float y = r * sin(theta);
 	gl_Position = ml_matrix * (position);
 	vs_out.tc = tc;
 	vs_out.time = vec2(float(iTime/10000.0f));

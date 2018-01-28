@@ -17,6 +17,7 @@ public class Level {
     private float bugSize = 0.02f;
     private float sunSize = 0.3f;
     private int timeElapsed = 0;
+    private int time = 0;
     private int bwTime = 10000;
 
     public Level(Sprite background) {
@@ -34,7 +35,7 @@ public class Level {
         LightBug.bind();
         for (LightBug bug : bugs) {
             if (bug != null) {
-                bug.render(timeElapsed);
+                bug.render(timeElapsed,time);
             }
 
         }
@@ -50,18 +51,18 @@ public class Level {
             if (key) {
                 moved = true;
                 if (i < mh.keys.length/2) {
-                    degree += 1;
+                    degree += 0.1;
                 } else {
-                    degree -= 1;
+                    degree -= 0.1;
                 }
             }
         }
 
         bird.rotate(degree);
         if (moved) {
-            bird.setSpeed(10);
+            bird.setSpeed(5);
         }  else {
-            bird.setSpeed(1);
+            bird.setSpeed(2);
         }
         bird.move();
 
@@ -82,6 +83,7 @@ public class Level {
         }
 
         timeElapsed++;
+        time++;
 
         if (timeElapsed > bwTime) {
             timeElapsed = bwTime;
