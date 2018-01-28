@@ -11,14 +11,17 @@ public class Level {
     private MidiHandler mh;
     private Bird bird;
     private LightBug[] bugs = new LightBug[400];
+    private Sun sun;
     private float birdSize = 0.1f;
     private float bugSize = 0.02f;
+    private float sunSize = 0.1f;
 
     public Level(Sprite background) {
         this.background = background;
         mh = new MidiHandler();
         createBird();
         createBug();
+        createSun();
     }
 
     public void draw() {
@@ -29,6 +32,7 @@ public class Level {
             bug.render();
         }
         LightBug.unbind();
+        sun.draw();
 }
 
     public void update() {
@@ -119,5 +123,34 @@ public class Level {
             bug = new LightBug(shader,va,tex,bird,i);
             bugs[i] = bug;
         }
+    }
+
+    public void createSun() {
+        float[] vertices = new float[] {
+            -sunSize * 9.0f / 16.0f, -sunSize, -0.05f,
+            -sunSize* 9.0f / 16.0f, sunSize, -0.05f,
+            sunSize* 9.0f / 16.0f,  sunSize, -0.05f,
+            sunSize* 9.0f / 16.0f, -sunSize, -0.05f
+        };
+
+        byte[] indices = new byte[] {
+            0, 1, 2,
+            2, 3, 0
+        };
+
+        float[] tcs = new float[] {
+            0, 1,
+            0, 0,
+            1, 0,
+            1, 1
+        };
+
+        VertexArray va = new VertexArray(vertices,indices,tcs);
+
+        Shader shader = new Shader("engineGraphics-master/Engine/shaders/sun.vert","engineGraphics-master/Engine/shaders/sun.frag");
+
+        Texture tex = new Texture("engineGraphics-master/Engine/res/one_ball.png");
+
+        sun = new Sun(shader,va,tex, bird);
     }
 }

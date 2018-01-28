@@ -40,8 +40,8 @@ public class LightBug{
 
     public void draw() {
         bind();
-        unbind();
         render();
+        unbind();
     }
 
     public static void bind() {

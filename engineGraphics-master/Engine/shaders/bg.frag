@@ -22,8 +22,4 @@ void main()
 
     color += vec4( fragColor, 1.0);
 
-    if (distance(uv, (sun - uv/100)) < 100) {
-        color = vec4( 255/250.0f, 252/250.0f, 160/255.0f ,1.0);
-    }
-
 }

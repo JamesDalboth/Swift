@@ -24,4 +24,8 @@ public class Vector3f {
     public Vector3f add(Vector3f other) {
         return new Vector3f(other.x + x, other.y + y, other.z + z);
     }
+
+    public Vector3f multiply(float factor) {
+        return new Vector3f(x * factor, y * factor, z * factor);
+    }
 }
