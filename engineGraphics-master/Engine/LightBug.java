@@ -17,7 +17,7 @@ public class LightBug{
     protected static Texture tex;
 
     private static Bird bird;
-    private Vector3f position = new Vector3f();
+    public Vector3f position = new Vector3f();
     private float speed;
     private float dir = 0;
 

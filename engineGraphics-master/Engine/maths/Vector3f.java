@@ -28,4 +28,8 @@ public class Vector3f {
     public Vector3f multiply(float factor) {
         return new Vector3f(x * factor, y * factor, z * factor);
     }
+
+    public float mag() {
+        return (float) Math.sqrt(Math.pow(x,2) + Math.pow(y, 2));
+    }
 }

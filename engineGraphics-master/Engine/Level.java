@@ -4,6 +4,7 @@ import Engine.graphics.Shader;
 import Engine.graphics.Sprite;
 import Engine.graphics.Texture;
 import Engine.graphics.VertexArray;
+import Engine.maths.Vector3f;
 
 public class Level {
     private int mapsize = 100;
@@ -30,7 +31,10 @@ public class Level {
         bird.draw();
         LightBug.bind();
         for (LightBug bug : bugs) {
-            bug.render();
+            if (bug != null) {
+                bug.render();
+            }
+
         }
         LightBug.unbind();
 
@@ -58,6 +62,18 @@ public class Level {
             bird.setSpeed(1);
         }
         bird.move();
+
+        for (int i = 0; i < bugs.length; i++) {
+            Vector3f disp = new Vector3f();
+
+            if (bugs[i] != null) {
+                disp = bugs[i].position.add(bird.getPos().negate());
+            }
+
+            if (disp.mag() < 0.1) {
+                bugs[i] = null;
+            }
+        }
     }
 
     public void close() {
